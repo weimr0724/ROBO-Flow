@@ -46,3 +46,49 @@ ROBO-Flow/
 ├─ logs/               # Generated run_*.csv logs
 ├─ validation_out/     # Validation plots (auto-generated)
 └─ README.md
+
+
+Design Evolution
+
+This project evolved from a script-based robot control implementation into a modular control framework.
+The evolution was driven by engineering concerns such as extensibility, reproducibility, and failure isolation, rather than feature expansion.
+
+Before: Script-Based Control
+
+In the initial version, robot control logic was implemented as a single execution flow:
+
+Input handling, control logic, and hardware communication were tightly coupled
+
+A single input path controlled the entire system
+
+Control behavior could only be evaluated during live execution
+
+Debugging and comparison relied on manual observation
+
+While functional, this structure suffered from:
+
+Single-point failures
+
+Limited scalability
+
+Inability to reproduce or validate control behavior offline
+
+After: Framework-Based Architecture
+
+The refactored system introduces a modular framework architecture:
+
+Input, control, transport, and validation are separated into independent layers
+
+Each layer communicates through well-defined interfaces
+
+Execution is decoupled from hardware via transport abstraction
+
+All runs are logged and can be replayed deterministically
+
+This evolution enables:
+
+Safe extension without refactoring core logic
+
+Offline replay and quantitative validation
+
+Controlled experimentation independent of real-time hardware availability
